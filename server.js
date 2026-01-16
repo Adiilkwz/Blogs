@@ -21,7 +21,7 @@ app.post('/blogs', async(req, res) => {
         const {title, body, author} = req.body;
 
         if (!title || !body){
-            res.status(400).json({error: "Title and Body are required."})
+            return res.status(400).json({error: "Title and Body are required."})
         }
 
         const newBlog = await Blog.create({ title, body, author }) 
@@ -32,3 +32,34 @@ app.post('/blogs', async(req, res) => {
         res.status(500).json({ message: "Server error" })
     }
 });
+
+app.get('/blogs', async (req, res) => {
+    try {
+        const allBlogs = await Blog.find().sort({ createdAt: -1 });
+
+        res.status(200).json(allBlogs);
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Server error"})
+    }
+})
+
+app.get('/blogs/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const blog = await Blog.findById(id);
+
+        if (blog == null) {
+            return res.status(400).json({ error: "Blog was not found" })
+        }
+
+        res.status(200).json(blog);
+    } catch (err){
+        if (err.kind === "ObjectId") {
+            return res.status(400).json({ message: "Invalid ID format"})
+        } else {
+            console.log(err)
+            res.status(500).json({ message: "Server error"})
+        }
+    }
+})
