@@ -63,3 +63,32 @@ app.get('/blogs/:id', async(req, res) => {
         }
     }
 })
+
+app.put('/blogs/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, body, author } = req.body;
+
+        const updatedBlog = await Blog.findByIdAndUpdate(id,
+            { title, body, author }, 
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedBlog) {
+            return res.status(400).json({ message: "Blog not found" })
+        }
+
+        res.status(200).json(updatedBlog)
+    } catch (err) {
+        if (err.name === 'CastError') {
+            return res.status(400).json({ message: "Invalid ID format" })
+        } 
+
+        if (err.name === 'ValidationError') {
+            return res.status(400).json({ message: err.message })
+        }
+
+        console.error(err);
+        res.status(500).json({ message: "Server error" })
+    }
+})
