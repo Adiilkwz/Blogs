@@ -49,8 +49,8 @@ app.get('/blogs/:id', async(req, res) => {
         const {id} = req.params;
         const blog = await Blog.findById(id);
 
-        if (blog == null) {
-            return res.status(400).json({ error: "Blog was not found" })
+        if (!blog) {
+            return res.status(404).json({ error: "Blog was not found" })
         }
 
         res.status(200).json(blog);
@@ -75,7 +75,7 @@ app.put('/blogs/:id', async(req, res) => {
         );
 
         if (!updatedBlog) {
-            return res.status(400).json({ message: "Blog not found" })
+            return res.status(404).json({ message: "Blog not found" })
         }
 
         res.status(200).json(updatedBlog)
@@ -89,6 +89,27 @@ app.put('/blogs/:id', async(req, res) => {
         }
 
         console.error(err);
+        res.status(500).json({ message: "Server error" })
+    }
+})
+
+app.delete('/blogs/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedBlog = await Blog.findByIdAndDelete(id);
+
+        if (!deletedBlog) {
+            return res.status(404).json({ message: "Blog not found" })
+        }
+
+        res.status(200).json({ message: "Blog deleted successfully" })
+    } catch (err) {
+        if (err.name === 'CastError') {
+            return res.status(400).json({ message: "Invalid ID format" })
+        }
+
+        console.error(err)
         res.status(500).json({ message: "Server error" })
     }
 })
