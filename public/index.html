@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Platform</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Create a New Post</h1>
+        
+        <form id="create-blog-form">
+            <label for="title">Title</label>
+            <input type="text" id="title" placeholder="What's on your mind?" required>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" placeholder="Your name (Optional)">
+
+            <label for="body">Content</label>
+            <textarea id="body" rows="5" placeholder="Share your story..." required></textarea>
+
+            <button type="submit">Publish Blog</button>
+        </form>
+
+        <hr>
+
+        <h1>Recent Stories</h1>
+
+        <div id="blogs-container">
+            <p style="text-align:center; color:#888;">Loading amazing content...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

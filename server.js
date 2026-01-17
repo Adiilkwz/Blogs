@@ -7,6 +7,7 @@ const MONGO_URI = process.env.MONGO_URI
 const Blog = require('./models/blog.js')
 
 app.use(express.json());
+app.use(express.static('public'));
 
 mongoose 
     .connect(MONGO_URI)

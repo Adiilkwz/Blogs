@@ -1,0 +1,161 @@
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --accent-color: #ff4b2b;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --text-light: #666;
+    --shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif; 
+    background: linear-gradient(135deg, var(--bg-color) 0%, #e2ebf0 100%);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+form {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--primary-color);
+}
+
+form:hover {
+    transform: translateY(-5px);
+}
+
+label {
+    font-weight: 600;
+    margin-top: 10px;
+    display: block;
+    color: var(--text-color);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    background-color: #fff;
+}
+
+button {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+    margin: 3rem 0;
+}
+
+#blogs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.blog-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid transparent;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--secondary-color);
+}
+
+.blog-card h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 1.4rem;
+}
+
+.blog-meta {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.blog-card p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.delete-btn {
+    background: var(--accent-color);
+    width: auto;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.blog-card:hover .delete-btn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.delete-btn:hover {
+    background: #d9381e;
+}
